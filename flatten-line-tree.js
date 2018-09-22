@@ -6,7 +6,7 @@
  * @param {any} input 
  * @returns 
  */
-export default function linesToList(input, loopPath=false) {
+export default function flattenLineTree(input, loopPath=false) {
 
   if (!Array.isArray(input)) {
     throw TypeError('Input value is not an array type ' + input);
@@ -30,7 +30,7 @@ export default function linesToList(input, loopPath=false) {
       output.push(path);
     }
     else {
-      output = output.concat(linesToList(ele, loopPath));
+      output = output.concat(flattenLineTree(ele, loopPath));
     }
   });
 
