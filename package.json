@@ -1,6 +1,6 @@
 {
   "name": "flatten-line-tree",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This is a tool used to turn a hierarchical tree structure of vector paths stored in list format",
   "main": "build/build.js",
   "scripts": {
