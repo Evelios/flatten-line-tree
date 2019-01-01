@@ -1,8 +1,15 @@
 const test = require('tape');
 const flattenLineTree = require('./build');
 
+test('Flatten Line Tree - single entry', function(t) {
+  const input = [[1, 2]];
+  const output = [[1, 2]];
 
-test("Flatten Line Tree - shallow", function(t) {
+  t.deepEqual(flattenLineTree(input), output);
+  t.end();
+});
+
+test('Flatten Line Tree - shallow', function(t) {
   const input =  [[1, 2], [2, 5]];
   const output = [[1, 2], [2, 5]];
 
@@ -10,7 +17,7 @@ test("Flatten Line Tree - shallow", function(t) {
   t.end();
 });
 
-test("Flatten Line Tree - medium", function(t) {
+test('Flatten Line Tree - medium', function(t) {
   const input = [
     [ [ 1,  2], [ 2,  5] ],
     [ [-6,  1], [ 5, -1] ],
@@ -30,7 +37,7 @@ test("Flatten Line Tree - medium", function(t) {
   t.end();
 });
 
-test("Flatten Line Tree - single element array", function(t) {
+test('Flatten Line Tree - single element array', function(t) {
   const input = [[
     [ [ 1,  2], [ 2,  5] ],
     [ [-6,  1], [ 5, -1] ],
@@ -50,8 +57,8 @@ test("Flatten Line Tree - single element array", function(t) {
   t.end();
 });
 
-test("Flatten Line Tree - deep", function(t) {
-  const input = [ 
+test('Flatten Line Tree - deep', function(t) {
+  const input = [
     [
       [ [ 1,  2], [ 2,  5] ],
       [ [-6,  1], [ 5, -1] ]
@@ -74,8 +81,8 @@ test("Flatten Line Tree - deep", function(t) {
   t.end();
 });
 
-test("Flatten Line Tree - deeper", function(t) {
-  const input = [ 
+test('Flatten Line Tree - deeper', function(t) {
+  const input = [
     [
       [ [ 1,  2], [ 2,  5] ],
       [ [-6,  1], [ 5, -1] ]
@@ -98,6 +105,44 @@ test("Flatten Line Tree - deeper", function(t) {
     [ [ 2,  5], [ 3,  1] ],
     [ [-6,  2], [-7, -3] ],
     [ [-5, -2], [-7, -7] ]
+  ];
+
+  t.deepEqual(flattenLineTree(input), output);
+  t.end();
+});
+
+test('Flatten Line Tree - polygon', function(t) {
+  const input = [
+    [
+      [ 1,  2], [ 2,  5],
+      [-6,  1], [ 5, -1],
+    ],
+    [
+      [
+        [ 2,  5], [ 3,  1],
+        [-6,  2], [-7, -3],
+        [-5, -2], [-7, -7]
+      ],
+      [
+        [ 1,  2], [ 2,  5],
+        [-6,  1], [ 5, -1]
+      ]
+    ]
+  ];
+  const output = [
+    [
+      [ 1,  2], [ 2,  5],
+      [-6,  1], [ 5, -1],
+    ],
+    [
+      [ 2,  5], [ 3,  1],
+      [-6,  2], [-7, -3],
+      [-5, -2], [-7, -7]
+    ],
+    [
+      [ 1,  2], [ 2,  5],
+      [-6,  1], [ 5, -1]
+    ]
   ];
 
   t.deepEqual(flattenLineTree(input), output);
